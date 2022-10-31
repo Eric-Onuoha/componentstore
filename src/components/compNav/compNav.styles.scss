@@ -1,0 +1,18 @@
+#compNavComponent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 2px;
+    row-gap: 2px;
+
+    .compNav{
+        height: 100px;
+        border: 1px solid black;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+
+        p{
+            font-size: 25px;
+        }
+    }
+}
