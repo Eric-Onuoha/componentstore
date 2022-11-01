@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createAccount } from "./register.firebase.utils";
 
 const Register = ()=> {
     const defaultFormFields = {
@@ -16,18 +17,23 @@ const Register = ()=> {
         setFormFields({...formFields, [name]: value});
     }
 
+    const handleSubmit = async (event)=> {
+        event.preventDefault();
+        createAccount(email, password);
+    }
+
     return(
         <div>
             <h1>Register with Mail</h1>
-            <form onChange={handleChange}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
-                <input type="text" name="username" value={username} />
+                <input type="text" name="username" onChange={handleChange} value={username} />
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={email}/>
+                <input type="email" name="email" onChange={handleChange} value={email}/>
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password}/>
+                <input type="password" name="password" onChange={handleChange} value={password}/>
                 <label htmlFor="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" value={confirmPassword}/>
+                <input type="password" name="confirmPassword" onChange={handleChange} value={confirmPassword}/>
                 <button type="submit">Create Account</button>
             </form>
         </div>
