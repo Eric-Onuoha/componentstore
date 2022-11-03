@@ -33,16 +33,7 @@ const firebaseConfig = {
 
     return await createUserWithEmailAndPassword(auth, email, password);
    
-  }
-
-//   const Provider = new GoogleAuthProvider();
-//   Provider.setCustomParameters({
-//     prompt: "select_account"
-//   });
-
-
-//   export const signInWithGooglePopUp = ()=> signInWithPopup(auth, Provider);
-  
+  }  
 
   export const getUserDocFromAuth = async(userAuth, username)=>{
     const userRef = doc(db,"Users", userAuth.uid);
