@@ -31,7 +31,8 @@ const firebaseConfig = {
   export const createAccount = async (email, password) =>{
     if(!email || !password) return;
 
-    const userAuth = await createUserWithEmailAndPassword(auth, email, password);
+    return await createUserWithEmailAndPassword(auth, email, password);
+   
   }
 
 //   const Provider = new GoogleAuthProvider();
@@ -43,25 +44,22 @@ const firebaseConfig = {
 //   export const signInWithGooglePopUp = ()=> signInWithPopup(auth, Provider);
   
 
-
-//   export const getUserDocFromAuth = async(userAuth)=>{
-//     const userRef = doc(db,"Users", userAuth.uid);
-//     console.log(userRef);
-//     const usersDbSnapshot = await getDoc(userRef);
+  export const getUserDocFromAuth = async(userAuth, username)=>{
+    const userRef = doc(db,"Users", userAuth.uid);
+    const usersDbSnapshot = await getDoc(userRef);
     
-//     // if(!usersDbSnapshot.exists()){
-//     //   const {displayName, email} = userAuth;
-//     //   const createdAt = new Date();
+    if(!usersDbSnapshot.exists()){
+      const {email} = userAuth;
+      const createdAt = new Date();
 
-//     //   try{
-//     //     const setSnap = await setDoc(userRef, {
-//     //       "Username": displayName,
-//     //       email,
-//     //       createdAt
-//     //     });
-//     //     console.log(setSnap);
-//     //   } catch(err){
-//     //     console.log(err.message);
-//     //   }
-//     // }
-//   }
+      try{
+        const setSnap = await setDoc(userRef, {
+          username,
+          email,
+          createdAt
+          });
+      } catch(err){
+        console.log(err.message);
+      }
+    }
+  }

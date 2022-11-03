@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createAccount } from "./register.firebase.utils";
+import { createAccount, getUserDocFromAuth } from "./register.firebase.utils";
 
 const Register = ()=> {
     const defaultFormFields = {
@@ -17,9 +17,26 @@ const Register = ()=> {
         setFormFields({...formFields, [name]: value});
     }
 
+    const resetForm = () =>{
+        setFormFields(defaultFormFields);
+    }
+
     const handleSubmit = async (event)=> {
         event.preventDefault();
-        createAccount(email, password);
+
+        if (password !== confirmPassword) {
+            alert("Passwords dont match");
+            return;
+        }
+
+        try{
+            const {user} = await createAccount(email, password);
+            await getUserDocFromAuth(user, username);
+            resetForm();
+        } catch(error){
+            console.log(error);
+        }
+
     }
 
     return(
