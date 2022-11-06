@@ -26,8 +26,7 @@ const SignIn = ()=>{
 
         try{
             const response = await signIn(email, password);
-            console.log (response);
-            resetForm();
+            console.log(response);
         } catch(error){
             console.log(error);
         }
@@ -38,8 +37,10 @@ const SignIn = ()=>{
         <div>
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
-                <input onChange={handleChange} type="email" />
-                <input onChange={handleChange} type="password" />
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" onChange={handleChange} value={email}/>
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" onChange={handleChange} value={password}/>
                 <button type="submit">Login With Email and Password</button>
             </form>
         </div>

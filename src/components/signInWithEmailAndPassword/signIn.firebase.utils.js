@@ -31,7 +31,6 @@ const firebaseConfig = {
     if(!email || !password) return;
 
     return await signInWithEmailAndPassword(auth, email, password);
-   
   }  
 
   // export const getUserDocFromAuth = async(userAuth, username)=>{
