@@ -1,10 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
-  signInWithRedirect,
-  signInWithEmailLink,
-  signInWithPopup,
-  GoogleAuthProvider
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 
 import {
@@ -26,34 +23,33 @@ const firebaseConfig = {
 
   const firebaseapp = initializeApp(firebaseConfig);
 
-  const Provider = new GoogleAuthProvider();
-  Provider.setCustomParameters({
-    prompt: "select_account"
-  });
-
   export const auth = getAuth();
-  export const signInWithGooglePopUp = ()=> signInWithPopup(auth, Provider);
-  
+
   export const db = getFirestore();
 
-  export const getUserDocFromAuth = async(userAuth)=>{
-    const userRef = doc(db,"Users", userAuth.uid);
-    console.log(userRef);
-    const usersDbSnapshot = await getDoc(userRef);
-    
-    if(!usersDbSnapshot.exists()){
-      const {displayName, email} = userAuth;
-      const createdAt = new Date();
+  export const signIn = async (email, password) =>{
+    if(!email || !password) return;
 
-      try{
-        const setSnap = await setDoc(userRef, {
-          "Username": displayName,
-          email,
-          createdAt
-        });
-        console.log(setSnap);
-      } catch(err){
-        console.log(err.message);
-      }
-    }
-  }
+    return await signInWithEmailAndPassword(auth, email, password);
+   
+  }  
+
+  // export const getUserDocFromAuth = async(userAuth, username)=>{
+  //   const userRef = doc(db,"Users", userAuth.uid);
+  //   const usersDbSnapshot = await getDoc(userRef);
+    
+  //   if(!usersDbSnapshot.exists()){
+  //     const {email} = userAuth;
+  //     const createdAt = new Date();
+
+  //     try{
+  //       const setSnap = await setDoc(userRef, {
+  //         username,
+  //         email,
+  //         createdAt
+  //         });
+  //     } catch(err){
+  //       console.log(err.message);
+  //     }
+  //   }
+  // }
