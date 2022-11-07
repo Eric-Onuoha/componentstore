@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "./user.context";
 import "./signIn.firebase.utils";
 import { signIn } from "./signIn.firebase.utils";
 
-const SignIn = ()=>{
+const SignIn = ()=> {
+
+    const {currentUser, setCurrentUser} = useContext(UserContext);
 
     const defaultFormFields = {
         email:"",
@@ -25,8 +28,9 @@ const SignIn = ()=>{
         event.preventDefault();
 
         try{
-            const response = await signIn(email, password);
-            console.log(response);
+            const {user} = await signIn(email, password);
+            setCurrentUser(user);
+            console.log(user);
         } catch(error){
             console.log(error);
         }
