@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
-import { UserContext } from "./user.context";
+// import { UserContext } from "./user.context";
 import "./signIn.firebase.utils";
 import { signIn } from "./signIn.firebase.utils";
 
-const SignIn = ()=> {
+const SignIn2 = () => {
 
-    const {currentUser, setCurrentUser} = useContext(UserContext);
+    // const {currentUser, setCurrentUser} = useContext(UserContext);
 
     const defaultFormFields = {
         email:"",
@@ -29,7 +29,7 @@ const SignIn = ()=> {
 
         try{
             const {user} = await signIn(email, password);
-            setCurrentUser(user);
+            // setCurrentUser(user);
             console.log(user);
         } catch(error){
             console.log(error);
@@ -39,22 +39,22 @@ const SignIn = ()=> {
 
     return(
         <div>
-            <h1>Sign In</h1>
+            <h1>Sign In 2</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" onChange={handleChange} value={email}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" onChange={handleChange} value={password}/>
                 <button type="submit">Login With Email and Password</button>
-                {
+                {/* {
                     currentUser ? (
                         <p>User</p>
                     ) : (
                         <p>No User</p>
                     )
-                }
+                } */}
             </form>
         </div>
     )
 }
-export default SignIn;
+export default SignIn2;
