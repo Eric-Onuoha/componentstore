@@ -1,0 +1,18 @@
+
+#postToFirestoreComponent{
+    margin-left: 50px;
+
+    form{
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 30%;
+
+        input{
+            height: 30px;
+        }
+        
+        label{
+            margin-top: 15px;
+        }
+    }
+}
