@@ -3,9 +3,9 @@ import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   doc,
-  getDoc,
-  setDoc,
-  collection,
+  // getDoc,
+  // setDoc,
+  collection, //to get collection reference
   writeBatch
 } from 'firebase/firestore';
 
@@ -21,15 +21,24 @@ const firebaseConfig = {
 
   const firebaseapp = initializeApp(firebaseConfig);
 
-  export const auth = getAuth();
+  // export const auth = getAuth();
 
   export const db = getFirestore();
 
-  export const signIn = async (email, password) =>{
-    if(!email || !password) return;
+  export const addCollectionAndDocuments = async (collectionName, docsToAdd) => {
+    const collectionRef = collection(db, collectionName); // search in the db for a collectionName that will be passed. If it doesnt exist firestore will create a ref anyway and if it does then you'd have the ref
+    const batch = writeBatch(db); // this gives you a batch first you can use to attach a bunch of writes, deletes etc that can get fired all together later
 
-    return await signInWithEmailAndPassword(auth, email, password);
-  }  
+    docsToAdd.forEach((docToAdd) => {
+      console.log(docToAdd);
+        const docRef = doc(collectionRef, docToAdd.newsTitle);
+        batch.set(docRef, docToAdd);
+    });
+
+    await batch.commit();
+    console.log("added");
+
+  }
 
   // export const getUserDocFromAuth = async(userAuth, username)=>{
   //   const userRef = doc(db,"Users", userAuth.uid);

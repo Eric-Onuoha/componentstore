@@ -1,27 +1,40 @@
 import React from "react"
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { postToFirestoreContext } from "./postToFirestore.contexts";
+// import { addCollectionAndDocuments } from "./postToFirestore.utils";
 
 import "./postToFirestore.styles.scss";
 
 const PostToFirestore = () => {
-    const defautlFormFields = {
-        newsSource: "",
-        newsTitle: "",
-        newsDate: "",
-        newsImage: "",
-        newsContent: ""
-    };
 
-    const [formFields, setFormFields] = useState(defautlFormFields);
+    const {documents, setDocuments} = useContext(postToFirestoreContext);
+
+
+    const defaultFormFields = [
+        {
+            newsTitle: "",
+            newsContentDetails: [{
+                newsSource: "",
+                newsDate: "",
+                newsImage: "",
+                newsContent: ""
+            }]
+        }
+    ];
+
+    const [formFields, setFormFields] = useState(defaultFormFields);
     const {newsSource, newsTitle, newsDate, newsImage, newsContent} = formFields;
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         console.log("Form submitted");
+        setDocuments({...formFields});
+        console.log("Doc: " + documents);
     }
 
     const handleChange = (event) => {
         const {name, value} = event.target;
-        setFormFields({...formFields, [name]: value})
+        setFormFields({...formFields, [name]: value});
     } 
 
     return(
@@ -43,7 +56,9 @@ const PostToFirestore = () => {
 
                 <label htmlFor="newsContent">News Content</label>
                 <textarea onChange={handleChange} name="newsContent" id="" cols="30" rows="10" value={newsContent}></textarea>
-                
+
+                <label htmlFor=""></label>
+                <button type="submit">Submit</button>                
             </form>
         </div>
     )

@@ -9,14 +9,21 @@
 // }
 import { createContext, useState } from "react";
 
+import { addCollectionAndDocuments } from "./postToFirestore.utils";
+
 export const postToFirestoreContext = createContext({
-    documents: []
+    documents: [],
+    setDocuments: ()=> null
 });
 
 
-export const postToFirestoreProvider = (children)=> {
-    const {documents, setDocuments} = useState([]);
-    const value = {documents};
+export const PostToFirestoreProvider = ({children})=> {
+    const [documents, setDocuments] = useState([]);
+    console.log("Documents: " + documents);
+    const value = {documents, setDocuments};
+    if(documents){
+        addCollectionAndDocuments("NewsDetails", documents);
+    }
     return(
         <postToFirestoreContext.Provider value = {value}>{children}</postToFirestoreContext.Provider>
     )
