@@ -8,23 +8,25 @@
 //     docs.
 // }
 import { createContext, useState } from "react";
+import SHOP_DATA from "./shopData";
 
 import { addCollectionAndDocuments } from "./postToFirestore.utils";
+import { useEffect } from "react";
 
 export const postToFirestoreContext = createContext({
-    documents: [],
-    setDocuments: ()=> null
+    documents: []
 });
 
 
 export const PostToFirestoreProvider = ({children})=> {
     const [documents, setDocuments] = useState([]);
-    console.log("Documents: " + documents);
+    useEffect(() => {
+        addCollectionAndDocuments("Categories", SHOP_DATA);
+    }, [documents]);
+
     const value = {documents, setDocuments};
-    if(documents){
-        addCollectionAndDocuments("NewsDetails", documents);
-    }
+
     return(
-        <postToFirestoreContext.Provider value = {value}>{children}</postToFirestoreContext.Provider>
+        <postToFirestoreContext.Provider value={value}>{children}</postToFirestoreContext.Provider>
     )
 }

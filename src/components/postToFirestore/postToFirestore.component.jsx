@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useContext } from "react";
 import { postToFirestoreContext } from "./postToFirestore.contexts";
-// import { addCollectionAndDocuments } from "./postToFirestore.utils";
+import { addCollectionAndDocuments } from "./postToFirestore.utils";
 
 import "./postToFirestore.styles.scss";
 
@@ -30,6 +30,7 @@ const PostToFirestore = () => {
         console.log("Form submitted");
         setDocuments({...formFields});
         console.log("Doc: " + documents);
+        addCollectionAndDocuments("NewsDetails", documents);
     }
 
     const handleChange = (event) => {
