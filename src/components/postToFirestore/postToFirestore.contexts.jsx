@@ -14,14 +14,16 @@ import { addCollectionAndDocuments } from "./postToFirestore.utils";
 import { useEffect } from "react";
 
 export const postToFirestoreContext = createContext({
-    documents: []
+    documents: [],
 });
 
 
 export const PostToFirestoreProvider = ({children})=> {
     const [documents, setDocuments] = useState([]);
+
     useEffect(() => {
-        addCollectionAndDocuments("Categories", SHOP_DATA);
+        console.log(documents);
+        addCollectionAndDocuments("Categories", documents);
     }, [documents]);
 
     const value = {documents, setDocuments};

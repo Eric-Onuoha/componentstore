@@ -1,7 +1,6 @@
 import React from "react"
 import { useState, useContext } from "react";
 import { postToFirestoreContext } from "./postToFirestore.contexts";
-import { addCollectionAndDocuments } from "./postToFirestore.utils";
 
 import "./postToFirestore.styles.scss";
 
@@ -12,7 +11,7 @@ const PostToFirestore = () => {
 
     const defaultFormFields = [
         {
-            newsTitle: "",
+            title: "",
             newsContentDetails: [{
                 newsSource: "",
                 newsDate: "",
@@ -23,14 +22,12 @@ const PostToFirestore = () => {
     ];
 
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {newsSource, newsTitle, newsDate, newsImage, newsContent} = formFields;
+    const {newsSource, title, newsDate, newsImage, newsContent} = formFields;
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Form submitted");
-        setDocuments({...formFields});
-        console.log("Doc: " + documents);
-        addCollectionAndDocuments("NewsDetails", documents);
+        setDocuments(formFields);
     }
 
     const handleChange = (event) => {
@@ -46,8 +43,8 @@ const PostToFirestore = () => {
                 <label htmlFor="newsSource">News Source</label>
                 <input onChange={handleChange} type="text" name="newsSource" value={newsSource}/>
 
-                <label htmlFor="newsTitle">News Title</label>
-                <input onChange={handleChange} type="text" name="newsTitle" value={newsTitle} />
+                <label htmlFor="title">News Title</label>
+                <input onChange={handleChange} type="text" name="title" value={title} />
 
                 <label htmlFor="newsDate">News Date</label>
                 <input onChange={handleChange} type="text" name="newsDate" value={newsDate} />
@@ -61,6 +58,11 @@ const PostToFirestore = () => {
                 <label htmlFor=""></label>
                 <button type="submit">Submit</button>                
             </form>
+
+
+            <div>
+                <h1>Document {title}</h1>
+            </div>
         </div>
     )
 }
