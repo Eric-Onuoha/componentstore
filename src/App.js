@@ -11,6 +11,7 @@ import SignIn from "./components/signInWithEmailAndPassword/signIn.component";
 import Register from "./components/RegisterWithEmailAndPassword/register.component";
 import SignIn2 from "./components/signInWithEmailAndPassword2/signIn.component";
 import PostToFirestore from "./components/postToFirestore/postToFirestore.component";
+import GetFromFirestore from "./components/getFromFirestore/getFromFirestore.component";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="signin2" element={<SignIn2/>}/>
           <Route path="register" element={<Register/>}/>
           <Route path="postfirestore" element={<PostToFirestore/>}/>
+          <Route path="getfirestore" element={<GetFromFirestore/>}/>
         </Route>
       </Routes>
     </div>
