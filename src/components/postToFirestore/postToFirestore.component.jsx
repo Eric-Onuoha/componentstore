@@ -8,25 +8,12 @@ const PostToFirestore = () => {
 
     const {documents, setDocuments} = useContext(postToFirestoreContext);
 
-
-    const defaultFormFields = [
-        {
-            title: "",
-            newsContentDetails: [{
-                newsSource: "",
-                newsDate: "",
-                newsImage: "",
-                newsContent: ""
-            }]
-        }
-    ];
-
-    const [formFields, setFormFields] = useState(defaultFormFields);
+    const [formFields, setFormFields] = useState([]);
     const {newsSource, title, newsDate, newsImage, newsContent} = formFields;
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Form submitted");
+        console.log(formFields);
         setDocuments(formFields);
     }
 
@@ -58,11 +45,6 @@ const PostToFirestore = () => {
                 <label htmlFor=""></label>
                 <button type="submit">Submit</button>                
             </form>
-
-
-            <div>
-                <h1>Document {title}</h1>
-            </div>
         </div>
     )
 }

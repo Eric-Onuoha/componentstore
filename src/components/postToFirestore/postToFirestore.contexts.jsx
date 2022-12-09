@@ -22,8 +22,9 @@ export const PostToFirestoreProvider = ({children})=> {
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
-        console.log(documents);
-        addCollectionAndDocuments("Categories", documents);
+        if(documents.length != 0){
+            addCollectionAndDocuments("Categories", documents);
+        }
     }, [documents]);
 
     const value = {documents, setDocuments};
