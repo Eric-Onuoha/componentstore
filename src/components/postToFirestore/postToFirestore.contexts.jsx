@@ -7,11 +7,9 @@
 
 //     docs.
 // }
-import { createContext, useState } from "react";
-import SHOP_DATA from "./shopData";
+import { createContext, useState, useEffect } from "react";
 
 import { addCollectionAndDocuments } from "./postToFirestore.utils";
-import { useEffect } from "react";
 
 export const postToFirestoreContext = createContext({
     documents: [],

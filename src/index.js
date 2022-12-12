@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './components/signInWithEmailAndPassword/user.context';
 import { PostToFirestoreProvider } from './components/postToFirestore/postToFirestore.contexts';
+import { GetFromFirestoreProvider } from './components/getFromFirestore/getFromFirestore.contextx';
 
 import './index.css';
 import App from './App';
@@ -13,7 +14,9 @@ root.render(
   <BrowserRouter>
     <UserProvider>
       <PostToFirestoreProvider>
-        <App />
+        <GetFromFirestoreProvider>
+          <App />
+        </GetFromFirestoreProvider>
       </PostToFirestoreProvider>
     </UserProvider>
   </BrowserRouter>
