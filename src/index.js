@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './components/signInWithEmailAndPassword/user.context';
 import { PostToFirestoreProvider } from './components/postToFirestore/postToFirestore.contexts';
 import { GetFromFirestoreProvider } from './components/getFromFirestore/getFromFirestore.contextx';
+import { SignInWReducerProvider } from './components/SignInWithReducer/SignInWithReducer.context';
 
 import './index.css';
 import App from './App';
@@ -13,11 +14,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <UserProvider>
-      <PostToFirestoreProvider>
-        <GetFromFirestoreProvider>
-          <App />
-        </GetFromFirestoreProvider>
-      </PostToFirestoreProvider>
+      <SignInWReducerProvider>
+        <PostToFirestoreProvider>
+          <GetFromFirestoreProvider>
+            <App />
+          </GetFromFirestoreProvider>
+        </PostToFirestoreProvider>
+      </SignInWReducerProvider>
     </UserProvider>
   </BrowserRouter>
 );

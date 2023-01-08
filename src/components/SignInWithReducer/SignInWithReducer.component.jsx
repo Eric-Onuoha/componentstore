@@ -1,7 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import { UserContext } from "./SignInWithReducer.context";
 import { signIn } from "./SignInWithReducer.firebase.utils";
 
 const SignInWithReducer = () => {
+    const {currentUser, setCurrentUser} = useContext(UserContext);
+
     const defaultForm = {
         username: "",
         password: ""
@@ -20,7 +23,8 @@ const SignInWithReducer = () => {
         event.preventDefault();
 
         const {user} = await signIn(username, password);
-        console.log(user);
+        setCurrentUser(user);
+        // console.log(user);
     }
 
     return (
@@ -34,6 +38,15 @@ const SignInWithReducer = () => {
                 <input onChange={handleChange} name="password" type="text" value={password}/>
 
                 <button type="submit">Login</button>
+
+                {
+                    currentUser ? (
+                        <p>User: {currentUser.email}</p>
+                    ) : (
+                        <p>No User</p>
+                    )
+                }
+
             </form>
         </div>
     )
