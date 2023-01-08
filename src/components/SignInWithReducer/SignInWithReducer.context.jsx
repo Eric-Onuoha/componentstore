@@ -24,9 +24,6 @@ const signInReducer = (state, action) => {
         default:
             throw new Error(`Unhandled type ${type} in the UserReducer`);
     }
-    return{
-        
-    }
 }
 
 const initialState = {
