@@ -5,6 +5,7 @@ import { UserProvider } from './components/signInWithEmailAndPassword/user.conte
 import { PostToFirestoreProvider } from './components/postToFirestore/postToFirestore.contexts';
 import { GetFromFirestoreProvider } from './components/getFromFirestore/getFromFirestore.contextx';
 import { SignInWReducerProvider } from './components/SignInWithReducer/SignInWithReducer.context';
+import { InventoryProvider } from './components/inventory/inventory.context';
 
 import './index.css';
 import App from './App';
@@ -17,7 +18,9 @@ root.render(
       <SignInWReducerProvider>
         <PostToFirestoreProvider>
           <GetFromFirestoreProvider>
-            <App />
+            <InventoryProvider>
+              <App />
+            </InventoryProvider>
           </GetFromFirestoreProvider>
         </PostToFirestoreProvider>
       </SignInWReducerProvider>

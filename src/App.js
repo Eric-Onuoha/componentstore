@@ -13,6 +13,7 @@ import SignIn2 from "./components/signInWithEmailAndPassword2/signIn.component";
 import PostToFirestore from "./components/postToFirestore/postToFirestore.component";
 import GetFromFirestore from "./components/getFromFirestore/getFromFirestore.component";
 import SignInWithReducer from "./components/SignInWithReducer/SignInWithReducer.component";
+import Inventory from "./components/inventory/inventory.component";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="register" element={<Register/>}/>
           <Route path="postfirestore" element={<PostToFirestore/>}/>
           <Route path="getfirestore" element={<GetFromFirestore/>}/>
+          <Route path="inventory" element={<Inventory/>}/>
         </Route>
       </Routes>
     </div>
