@@ -35,3 +35,4 @@ export const getCollectionAndDocuments = async (collectionKey) => {
     return categoryMap;
 }
 
+

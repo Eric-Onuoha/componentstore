@@ -14,6 +14,7 @@ import PostToFirestore from "./components/postToFirestore/postToFirestore.compon
 import GetFromFirestore from "./components/getFromFirestore/getFromFirestore.component";
 import SignInWithReducer from "./components/SignInWithReducer/SignInWithReducer.component";
 import Inventory from "./components/inventory/inventory.component";
+import ImageUpload from "./components/imageUpload/imageUpload.component";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="postfirestore" element={<PostToFirestore/>}/>
           <Route path="getfirestore" element={<GetFromFirestore/>}/>
           <Route path="inventory" element={<Inventory/>}/>
+          <Route path="imageupload" element={<ImageUpload/>}/>
         </Route>
       </Routes>
     </div>

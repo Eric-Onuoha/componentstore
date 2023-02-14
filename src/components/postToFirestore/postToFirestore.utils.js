@@ -27,6 +27,7 @@ const firebaseConfig = {
     const collectionRef = collection(db, collectionKey); // search in the db for a collectionName that will be passed. If it doesnt exist firestore will create a ref anyway and if it does then you'd have the ref
     const batch = writeBatch(db); // this gives you a batch first you can use to attach a bunch of writes, deletes etc that can get fired all together later
 
+    console.log(collectionRef);
     const docRef = doc(collectionRef, docToAdd.title);
     batch.set(docRef, docToAdd);
 
