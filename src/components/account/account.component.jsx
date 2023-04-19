@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { signIn } from "./signIn.firebase.utils";
+import { signIn, signInWithGooglePopUp } from "./signIn.firebase.utils";
 // import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 // import { addCurrentUser } from "../../reduxStore/actionDispatches";
@@ -23,7 +23,7 @@ const Account = () => {
         setFormFields({...formFields, [name]: value});
     }
 
-    const handleSubmit = async (event)=> {
+    const loginWithEmail = async (event)=> {
         event.preventDefault();
 
         try{
@@ -37,15 +37,27 @@ const Account = () => {
 
     }
 
+    const loginWithGoogle = async (event) => {
+        event.preventDefault();
+
+        try{
+            const {user} = await signInWithGooglePopUp();
+            alert(user.email);
+        } catch(error){
+            alert(error);
+        }
+    }
+
     return(
         <div id="aunthenticatorComponent">
             <h1>Sign In as WIPF admin</h1>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" onChange={handleChange} value={email}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" onChange={handleChange} value={password}/>
-                <button type="submit">Login</button>
+                <button type="submit" onClick={loginWithEmail}>Login</button>
+                <button type="submit" onClick={loginWithGoogle}>Login With Google</button>
                 <p>Don't have an account? Find an existing account holder to help you create one</p>
             </form>
         </div>
