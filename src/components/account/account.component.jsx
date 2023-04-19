@@ -1,11 +1,14 @@
-import { useState, useContext } from "react";
-// import { UserContext } from "./user.context";
-import "./signIn.firebase.utils";
+import React from "react";
+import { useState } from "react";
 import { signIn } from "./signIn.firebase.utils";
+// import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { addCurrentUser } from "../../reduxStore/actionDispatches";
+import "./account.styles.scss";
 
-const SignIn2 = () => {
-
-    // const {currentUser, setCurrentUser} = useContext(UserContext);
+const Account = () => {
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
 
     const defaultFormFields = {
         email:"",
@@ -25,32 +28,28 @@ const SignIn2 = () => {
 
         try{
             const {user} = await signIn(email, password);
-            // setCurrentUser(user);
-            console.log(user);
+            // dispatch(addCurrentUser(user.email))
+            // navigate("/admin/cms");
+            alert(user)
         } catch(error){
-            console.log(error);
+            alert(error.message);
         }
 
     }
 
     return(
-        <div>
-            <h1>Sign In 2</h1>
+        <div id="aunthenticatorComponent">
+            <h1>Sign In as WIPF admin</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" onChange={handleChange} value={email}/>
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" onChange={handleChange} value={password}/>
-                <button type="submit">Login With Email and Password</button>
-                {/* {
-                    currentUser ? (
-                        <p>User</p>
-                    ) : (
-                        <p>No User</p>
-                    )
-                } */}
+                <button type="submit">Login</button>
+                <p>Don't have an account? Find an existing account holder to help you create one</p>
             </form>
         </div>
     )
-}
-export default SignIn2;
+};
+
+export default Account;

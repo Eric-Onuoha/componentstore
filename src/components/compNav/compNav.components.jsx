@@ -16,6 +16,7 @@ const CompNav = () => {
             <Link className="compNav" to={"getfirestore"}><p>Get from Firestore</p></Link>
             <Link className="compNav" to={"inventory"}><p>Inventory Logic</p></Link>
             <Link className="compNav" to={"imageupload"}><p>Image Upload</p></Link>
+            <Link className="compNav" to={"account"}><p>User Account Management</p></Link>
         </div>
     )
 }
